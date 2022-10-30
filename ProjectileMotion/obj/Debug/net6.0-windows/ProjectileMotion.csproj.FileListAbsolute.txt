@@ -1,0 +1,17 @@
+C:\Users\Mahir\source\repos\ProjectileMotion\ProjectileMotion\bin\Debug\net6.0-windows\ProjectileMotion.exe
+C:\Users\Mahir\source\repos\ProjectileMotion\ProjectileMotion\bin\Debug\net6.0-windows\ProjectileMotion.deps.json
+C:\Users\Mahir\source\repos\ProjectileMotion\ProjectileMotion\bin\Debug\net6.0-windows\ProjectileMotion.runtimeconfig.json
+C:\Users\Mahir\source\repos\ProjectileMotion\ProjectileMotion\bin\Debug\net6.0-windows\ProjectileMotion.dll
+C:\Users\Mahir\source\repos\ProjectileMotion\ProjectileMotion\bin\Debug\net6.0-windows\ProjectileMotion.pdb
+C:\Users\Mahir\source\repos\ProjectileMotion\ProjectileMotion\obj\Debug\net6.0-windows\ProjectileMotion.csproj.AssemblyReference.cache
+C:\Users\Mahir\source\repos\ProjectileMotion\ProjectileMotion\obj\Debug\net6.0-windows\ProjectileMotion.Main.resources
+C:\Users\Mahir\source\repos\ProjectileMotion\ProjectileMotion\obj\Debug\net6.0-windows\ProjectileMotion.csproj.GenerateResource.cache
+C:\Users\Mahir\source\repos\ProjectileMotion\ProjectileMotion\obj\Debug\net6.0-windows\ProjectileMotion.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Mahir\source\repos\ProjectileMotion\ProjectileMotion\obj\Debug\net6.0-windows\ProjectileMotion.AssemblyInfoInputs.cache
+C:\Users\Mahir\source\repos\ProjectileMotion\ProjectileMotion\obj\Debug\net6.0-windows\ProjectileMotion.AssemblyInfo.cs
+C:\Users\Mahir\source\repos\ProjectileMotion\ProjectileMotion\obj\Debug\net6.0-windows\ProjectileMotion.csproj.CoreCompileInputs.cache
+C:\Users\Mahir\source\repos\ProjectileMotion\ProjectileMotion\obj\Debug\net6.0-windows\ProjectileMotion.dll
+C:\Users\Mahir\source\repos\ProjectileMotion\ProjectileMotion\obj\Debug\net6.0-windows\refint\ProjectileMotion.dll
+C:\Users\Mahir\source\repos\ProjectileMotion\ProjectileMotion\obj\Debug\net6.0-windows\ProjectileMotion.pdb
+C:\Users\Mahir\source\repos\ProjectileMotion\ProjectileMotion\obj\Debug\net6.0-windows\ProjectileMotion.genruntimeconfig.cache
+C:\Users\Mahir\source\repos\ProjectileMotion\ProjectileMotion\obj\Debug\net6.0-windows\ref\ProjectileMotion.dll
