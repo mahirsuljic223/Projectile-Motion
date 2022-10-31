@@ -112,6 +112,7 @@
             this.chb_L_h0.TabIndex = 14;
             this.chb_L_h0.Text = "Show h0";
             this.chb_L_h0.UseVisualStyleBackColor = true;
+            this.chb_L_h0.CheckedChanged += new System.EventHandler(this.UpdateLegend);
             // 
             // chb_L_angle
             // 
@@ -125,6 +126,7 @@
             this.chb_L_angle.TabIndex = 13;
             this.chb_L_angle.Text = "Show α";
             this.chb_L_angle.UseVisualStyleBackColor = true;
+            this.chb_L_angle.CheckedChanged += new System.EventHandler(this.UpdateLegend);
             // 
             // chb_L_v0
             // 
@@ -138,6 +140,7 @@
             this.chb_L_v0.TabIndex = 12;
             this.chb_L_v0.Text = "Show V₀";
             this.chb_L_v0.UseVisualStyleBackColor = true;
+            this.chb_L_v0.CheckedChanged += new System.EventHandler(this.UpdateLegend);
             // 
             // chb_legend
             // 
@@ -151,7 +154,7 @@
             this.chb_legend.TabIndex = 11;
             this.chb_legend.Text = "Legend";
             this.chb_legend.UseVisualStyleBackColor = true;
-            this.chb_legend.CheckedChanged += new System.EventHandler(this.chb_legend_CheckedChanged);
+            this.chb_legend.CheckedChanged += new System.EventHandler(this.UpdateLegend);
             // 
             // label6
             // 

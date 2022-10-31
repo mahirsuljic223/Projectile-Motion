@@ -27,6 +27,7 @@ namespace ProjectileMotion
 
         private Size displaySize;
         private List<Path> paths = new List<Path>();
+        private Font f = new Font(FontFamily.GenericSerif, 12);
 
         private const double g = 9.80665d;
         private double scaleX = 10;                     // 10 px : 1 unit
@@ -74,17 +75,20 @@ namespace ProjectileMotion
         {
             if (chb_legend.Checked)
             {
-                Font f = new Font(FontFamily.GenericSerif, 12);
                 Image temp = pb_display.Image;
-                Size s = new Size(220, 0);
+                int w = 0;
 
                 if (this.WindowState == FormWindowState.Maximized)
-                {
-                    f = new Font(FontFamily.GenericSerif, 14);
-                    s = new Size(300, 0);
-                }
+                    f = new Font(FontFamily.GenericSerif, 16);
 
-                Point p = new Point(pb_display.Width - s.Width, 0);
+                if (chb_L_v0.Checked)
+                    w += TextRenderer.MeasureText("V₀: 100.00m/s".ToString(), f).Width + 5;
+                if (chb_L_angle.Checked)
+                    w += TextRenderer.MeasureText("α: -90°".ToString(), f).Width + 5;
+                if (chb_L_h0.Checked)
+                    w += TextRenderer.MeasureText("h₀: 100.00m".ToString(), f).Width + 5;
+
+                Point p = new Point(pb_display.Width - w, 0);
                 using (Graphics g = Graphics.FromImage(temp))
                 {
                     int padding = 5;
@@ -95,7 +99,7 @@ namespace ProjectileMotion
                         string str = String.Empty;
 
                         if (chb_L_v0.Checked)
-                            str += ("V₀: " + Math.Round(path.v0, 2) + "m/s").PadRight(13);
+                            str += ("V₀: " + Math.Round(path.v0, 2) + "m/s").PadRight(14);
                         if (chb_L_angle.Checked)
                             str += ("α: " + (int)Math.Round(path.a * 180 / Math.PI) + "°").PadRight(10);
                         if (chb_L_h0.Checked)
@@ -104,8 +108,6 @@ namespace ProjectileMotion
                         g.DrawString(str, f, new SolidBrush(path.c), new Point(p.X + padding, y));
                         y += (int)f.Size + 2;
                     }
-
-                    g.DrawRectangle(new Pen(Color.Black, 2), new Rectangle(p, s));
                 }
 
                 pb_display.Image = temp;
@@ -115,9 +117,18 @@ namespace ProjectileMotion
 
         private void ClearDisplayImage(Color c)
         {
-            const double P0d = 4;                                                                               // diameter of coordinate origin point
-            const double lh = 6;                                                                                // tickmark line height
+            double P0d = 4;                                                                                     // diameter of coordinate origin point
+            double lh = 6;                                                                                      // tickmark line height
             Font f = new Font(FontFamily.GenericSerif, 14);                                                     // font
+
+            if (this.WindowState == FormWindowState.Maximized)
+            {
+                f = new Font(FontFamily.GenericSerif, 18);
+                axisPadding = 40;
+                lh = 8;
+                P0d = 6;
+            }
+
             Point P0 = new Point(axisPadding, pb_display.Height - axisPadding);                                 // coordinate origin
             Point X0 = new Point(pb_display.Width, pb_display.Height - axisPadding);                            // end of X axis
             Point Y0 = new Point(axisPadding, 0);                                                               // end of Y axis
@@ -146,12 +157,12 @@ namespace ProjectileMotion
                             if (t % 10 == 0 && i != P0.X)
                             {
                                 if (scaleX >= 2.7)
-                                    p.Width = 4;
+                                    p.Width = (float)(2d * lh / 3d);
                                 else
-                                    p.Width = 2;
+                                    p.Width = (float)(lh / 3d);
                             }
                             else if (t % 5 == 0 && scaleX >= 2.7)
-                                p.Width = 2;
+                                p.Width = (float)(lh / 3d);
 
                             if (t != 0 && (scaleX > 20 ||
                                 scaleX >= 6 && scaleX < 20 && t % 5 == 0 ||
@@ -164,7 +175,7 @@ namespace ProjectileMotion
                             if (!(scaleX < 2 && p.Width > 1))
                                 g.DrawLine(p, (int)i, (int)(P0.Y - lh / 2), (int)i, (int)(P0.Y + lh / 2));
 
-                            p.Width = 1;
+                            p.Width = (float)(lh / 6d);
                         }
 
                         for (double i = P0.Y; i > Y0.Y; i -= scaleY)                                            // Y axis tickmarks
@@ -307,12 +318,9 @@ namespace ProjectileMotion
             chb_L_h0.Enabled = chb_legend.Checked;
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void UpdateLegend(object sender, EventArgs e)
         {
-            paths.Add(new Path(10, 30, 5, Color.Blue));
-            paths.Add(new Path(20, 60, 0, Color.Green));
-            paths.Add(new Path(10, 40, 10, Color.Red));
-
+            ClearDisplayImage();
             DrawPaths();
             DrawLegend();
         }
