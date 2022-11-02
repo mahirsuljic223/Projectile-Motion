@@ -364,7 +364,6 @@
             this.ClientSize = new System.Drawing.Size(1100, 650);
             this.Controls.Add(this.panel_controls);
             this.Controls.Add(this.pb_display);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "Main";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Projectile Motion";

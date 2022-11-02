@@ -75,38 +75,52 @@ namespace ProjectileMotion
         {
             if (chb_legend.Checked)
             {
+                int Wv = 0;
+                int Wa = 0;
+                int Wh = 0;
+                int pad = 5;
                 Image temp = pb_display.Image;
-                int w = 0;
 
                 if (this.WindowState == FormWindowState.Maximized)
                     f = new Font(FontFamily.GenericSerif, 16);
+                else
+                    f = new Font(FontFamily.GenericSerif, pb_display.Height * 12 / 650);
 
                 if (chb_L_v0.Checked)
-                    w += TextRenderer.MeasureText("V₀: 100.00m/s".ToString(), f).Width + 5;
+                    Wv = TextRenderer.MeasureText("V₀: 100.00m/s".ToString(), f).Width + pad;
                 if (chb_L_angle.Checked)
-                    w += TextRenderer.MeasureText("α: -90°".ToString(), f).Width + 5;
+                    Wa = TextRenderer.MeasureText("α: -90°".ToString(), f).Width + pad;
                 if (chb_L_h0.Checked)
-                    w += TextRenderer.MeasureText("h₀: 100.00m".ToString(), f).Width + 5;
+                    Wh = TextRenderer.MeasureText("h₀: 100.00m".ToString(), f).Width + pad;
 
-                Point p = new Point(pb_display.Width - w, 0);
+                Point Pv = new Point(pb_display.Width - Wv - Wa - Wh, 0);
+                Point Pa = new Point(pb_display.Width - Wa - Wh, 0);
+                Point Ph = new Point(pb_display.Width - Wh, 0);
+
                 using (Graphics g = Graphics.FromImage(temp))
                 {
-                    int padding = 5;
-                    int y = padding;
+                    int marginX = 10;
+                    int marginY = 2;
+                    int y = marginY;
 
                     foreach (Path path in paths)
                     {
-                        string str = String.Empty;
+                        string v = String.Empty;
+                        string a = String.Empty;
+                        string h = String.Empty;
 
                         if (chb_L_v0.Checked)
-                            str += ("V₀: " + Math.Round(path.v0, 2) + "m/s").PadRight(14);
+                            v = ("V₀: " + Math.Round(path.v0, 2) + "m/s");
                         if (chb_L_angle.Checked)
-                            str += ("α: " + (int)Math.Round(path.a * 180 / Math.PI) + "°").PadRight(10);
+                            a = ("α: " + (int)Math.Round(path.a * 180 / Math.PI) + "°");
                         if (chb_L_h0.Checked)
-                            str += "h₀: " + Math.Round(path.h0, 2) + "m";
+                            h = "h₀: " + Math.Round(path.h0, 2) + "m";
 
-                        g.DrawString(str, f, new SolidBrush(path.c), new Point(p.X + padding, y));
-                        y += (int)f.Size + 2;
+                        g.DrawString(v, f, new SolidBrush(path.c), new Point(Pv.X + marginX, y));
+                        g.DrawString(a, f, new SolidBrush(path.c), new Point(Pa.X + marginX, y));
+                        g.DrawString(h, f, new SolidBrush(path.c), new Point(Ph.X + marginX, y));
+
+                        y += (int)f.Size + marginY;
                     }
                 }
 
@@ -119,7 +133,8 @@ namespace ProjectileMotion
         {
             double P0d = 4;                                                                                     // diameter of coordinate origin point
             double lh = 6;                                                                                      // tickmark line height
-            Font f = new Font(FontFamily.GenericSerif, 14);                                                     // font
+            Font f = new Font(FontFamily.GenericSerif, pb_display.Height * 14 / 650);                           // font
+            axisPadding = pb_display.Height * 30 / 650;
 
             if (this.WindowState == FormWindowState.Maximized)
             {
@@ -226,6 +241,8 @@ namespace ProjectileMotion
         private void Main_Resize(object sender, EventArgs e)
         {
             displaySize = new Size(pb_display.Width, pb_display.Height);
+
+
             ClearDisplayImage();
             DrawPaths();
             DrawLegend();
